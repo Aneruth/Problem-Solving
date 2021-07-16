@@ -1,2 +1,2 @@
 # Problem-Solving
-A repo for problem solution of both Leetcode and HackerRank. 
+A repo for solution of both Leetcode and HackerRank problems. 
