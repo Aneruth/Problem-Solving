@@ -218,11 +218,78 @@ from itertools import combinations
 def miniMax1(ar):
     out = [sum(j) for i in range(1,len(ar)) for j in combinations(ar,i) if len(j) == len(ar)-1]
     return out
-print(f'Output from method 1 is: {miniMax1([1,3,5,9])}')
+# print(f'Output from method 1 is: {miniMax1([1,3,5,9])}')
 
 # Method 2
 def miniMax2(ar):
     resultList = [[ar[i],ar[i+1],ar[j],ar[j+1]] for i in range(len(ar)-1) for j in range(i,len(ar)-1)]
     output = [i for i in resultList if len(list(set(i))) != 2 and len(list(set(i))) != 3]
     return [max(output),min(output)]
-print(f'Output from method 2 is: {miniMax2([1,3,5,9])}')
+# print(f'Output from method 2 is: {miniMax2([1,3,5,9])}')
+
+# Words Score
+# Consider that vowels in the alphabet are a, e, i, o, u and y.
+# Function score_words takes a list of lowercase words as an argument and returns a score as follows:
+# The score of a single word is 2 if the word contains an even number of vowels. Otherwise, the score of this word is 1. The score for the whole list of words is the sum of scores of all words in the list.
+# Debug the given function score_words such that it returns a correct score.
+# Your function will be tested on several cases by the locked template code.
+
+# Sample Input: 
+# hacker book
+
+# Sample Output: 
+# 4
+# Method 1
+from collections import Counter
+def wordsScore1(words):
+    vowels = ['a', 'e', 'i', 'o', 'u', 'y']
+    score = 0
+    wordsList = words.split(' ')
+    for words in wordsList:
+        hash_map = Counter(words)
+    out = [hash_map[i] for i in vowels if i in hash_map.keys()]
+    if sum(out) % 2 == 0:  score = sum(out) + 2
+    else:score += 1 
+    return score
+# print(f'Method 1 output is: {wordsScore1("hacker book")}')
+
+# Method 2
+import re
+def wordsScore2(words):
+    score = 0
+    for word in words:
+        score+= len(re.findall("[aeiouy]",word))%2 or 2          
+    return score
+# print(f'Method 2 output is: {wordsScore2(["hacker","book"])}')
+
+# Validating Credit Card Numbers
+# You and Fredrick are good friends. Yesterday, Fredrick received N credit cards from ABCD Bank. He wants to verify whether his credit card numbers are valid or not. You happen to be great at regex so he is asking for your help!
+# A valid credit card from ABCD Bank has the following characteristics: 
+# ► It must start with a 4 or 5 or 6
+# ► It must contain exactly 16 digits. 
+# ► It must only consist of digits (0-9). 
+# ► It may have digits in groups of 4, separated by one hyphen "-".
+# ► It must NOT use any other separator like ' ' , '_', etc. 
+# ► It must NOT have 4 or more consecutive repeated digits.
+
+# Examples:
+# Valid Credit Card Numbers
+# 4253625879615786 
+# 4424424424442444  
+# 5122-2368-7954-3214
+
+# Invalid Credit Card Numbers
+# 42536258796157867       #17 digits in card number → Invalid 
+# 4424444424442444        #Consecutive digits are repeating 4 or more times → Invalid
+# 5122-2368-7954 - 3214   #Separators other than '-' are used → Invalid
+# 44244x4424442444        #Contains non digit characters → Invalid
+# 0525362587961578        #Doesn't start with 4, 5 or 6 → Invalid
+
+def validCard(card):
+    if len(card) == 16: return 'Valid'
+    if card[0] == 4 or 5 or 6: return 'Valid'
+    if len(card.split('-')) == 4 or len(card)/4 == 4 : return 'Valid'
+    else:
+        return 'Invalid'
+
+print(validCard("42536258796157867"))
