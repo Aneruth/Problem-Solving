@@ -262,6 +262,7 @@ def wordsScore2(words):
     return score
 # print(f'Method 2 output is: {wordsScore2(["hacker","book"])}')
 
+# Yet to see this
 # Validating Credit Card Numbers
 # You and Fredrick are good friends. Yesterday, Fredrick received N credit cards from ABCD Bank. He wants to verify whether his credit card numbers are valid or not. You happen to be great at regex so he is asking for your help!
 # A valid credit card from ABCD Bank has the following characteristics: 
@@ -293,3 +294,30 @@ def validCard(card):
         return 'Invalid'
 
 print(validCard("42536258796157867"))
+
+# Grading Students
+# HackerLand University has the following grading policy:
+# Every student receives a grade in the inclusive range from 0 to 100.
+# Any grade less than 40 is a failing grade.
+# Sam is a professor at the university and likes to round each student's grade according to these rules:
+# If the difference between the grade and the next multiple of 5 is less than 3, round grade up to the next multiple of 5.
+# If the value of grade is less than 38, no rounding occurs as the result will still be a failing grade.
+def studentGrade(alist):
+    return [i+(5-(i%5)) if(i>37 and i%5 != 0 and i%5>=3) else i for i in alist]
+print(f'Method 1 output is: {studentGrade([73,67,38,33])}')
+
+# Encryption
+# An English text needs to be encrypted using the following encryption scheme. 
+# First, the spaces are removed from the text. Let L be the length of this text. 
+# Then, characters are written into a grid, whose rows and columns have the following constraints:
+# [Check the ipynb for following constraints]
+
+# Method 1 using numpy package
+import numpy as np
+def encrypt(string):
+    sqaureRootL = str((len(string))**0.5) 
+    row,col = list(map(int,sqaureRootL[:3].split('.')))[0],list(map(int,sqaureRootL[:3].split('.')))[1]
+    stringList = [i for i in string]
+    wordMatrix = np.matrix(stringList).reshape((row,col))
+    return wordMatrix
+print(f'Method 1 output is: \n {encrypt("haveaniceday")}')
