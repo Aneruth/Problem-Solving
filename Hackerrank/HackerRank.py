@@ -2,12 +2,9 @@
 from collections import Counter
 from itertools import combinations
 import textwrap as wp
-# import numpy as np
+import numpy as np
 import itertools,re
 class hacerRank():
-    def __init__(self) -> None:
-        pass
-
     # Sales by Match
     # There is a large pile of socks that must be paired by color. Given an array of integers representing the color of each sock, determine how many pairs of socks with matching colors there are.
     # Example 
@@ -21,10 +18,10 @@ class hacerRank():
     # int arr[[n]]: the colors of each sock
     # Returns 
     # int: the number of pairs
-    @staticmethod
+    
     def salesMatch(self,arr):
         c = 0
-        for i in Counter(self.arr).values():
+        for i in Counter(arr).values():
             c += int(i/2)
         return c
     # print(f'Method 1 solution is: {salesMatch1([1,2,1,2,1,3,2])}')
@@ -35,8 +32,9 @@ class hacerRank():
     # Note that the lowest index item moves to the highest index in a rotation. This is called a circular array.
     # Given an array a of n integers and a number,d , perform d left rotations on the array. 
     # Return the updated array to be printed as a single line of space-separated integers.
+    
     def leftRotation(self,alist,n):
-        return self.alist[self.n:] + self.alist[:self.n]
+        return alist[n:] + alist[:n]
     # print(f'Left rotation array is {leftRotation([1,2,3,4,5],3)}')
 
     # Minimum Swaps 2 
@@ -45,15 +43,15 @@ class hacerRank():
     # Example : arr = [7,1,3,2,4,5,6] Number of swaps: 5 --> output
     # using bubble sort we can count the number of swaps required
     # Partial output solves 3/15 test cases 
-    @staticmethod
+    
     def minSwaps(self,alist):
         counter = 0
-        for j in range(len(self.alist)):
-            for i in range(len(self.alist)-1):
-                if self.alist[i] > self.alist[i+1]:
-                    self.alist[i],self.alist[i+1]  = self.alist[i+1],self.alist[i]
+        for j in range(len(alist)):
+            for i in range(len(alist)-1):
+                if alist[i] > alist[i+1]:
+                    alist[i],alist[i+1]  = alist[i+1],alist[i]
                     counter += 1
-        return self.alist,counter
+        return alist,counter
     # print(minSwaps([7,1,3,2,4,5,6]))
 
     # Hash Tables: Ransom Note
@@ -67,31 +65,31 @@ class hacerRank():
     # magazine = "attack at dawn"; note = "Attack at dawn"
 
     # Method 1
-    @staticmethod
+    
     def ransome1(self,mag,note):
         counter = 0
-        for m in range(len(self.mag.split(" "))):
-            for n in range(1,len(self.note.split(" "))):
-                if self.note.split(" ")[n] == self.mag.split(" ")[m]:
+        for m in range(len(mag.split(" "))):
+            for n in range(1,len(note.split(" "))):
+                if note.split(" ")[n] == mag.split(" ")[m]:
                     counter += 1
         
-        if counter == len(self.note.split(" ")):
+        if counter == len(note.split(" ")):
             return 'Yes'
         return 'No'
     # print(f'Can we replicate the Magazine: {ransome1("two times three is not four","two times two is four")}')
 
     # Method 2 (#bettermethod)
-    @staticmethod
+    
     def ransome2(self,mag,note):
-        return (Counter(self.note) - Counter(self.mag)) == {}
+        return (Counter(note) - Counter(mag)) == {}
     # print(f'Can we replicate the Magazine: {ransome2("two times three is not four","two times two is four")}')
 
     # Two Strings
     # Given two strings, determine if they share a common substring. A substring may be as small as one character.
     # Example: s1: 'and'; s2: 'art' common substring 'a'.
-    @staticmethod
+    
     def twoStrings1(self,s1,s2):
-        return (set(self.s1).intersection(set(self.s2)),len(set(self.s1).intersection(set(self.s2))) >= 1)
+        return (set(s1).intersection(set(s2)),len(set(s1).intersection(set(s2))) >= 1)
     # print('Is there any common susbstring present {1} and the string is {0}'.format(twoStrings1("hello","world")[0],twoStrings1("hello","world")[1]))
 
     # Alternating Characters
@@ -100,11 +98,11 @@ class hacerRank():
     # Your task is to find the minimum number of required deletions.
     # Example s = AABAAB requires two deletions to make s = ABAB 
     # Loop through the string and if we find the next immediate string similar to the first one then we increment the counter value.
-    @staticmethod
+    
     def alterChar(self,string):
         count = 0
-        for i in range(len(self.string)-1):
-            if self.string[i] == self.string[i+1]:
+        for i in range(len(string)-1):
+            if string[i] == string[i+1]:
                 count += 1
         return count
     # print(f'Number fo deletions required to make the array alternative: {alterChar("AAAA")}')
@@ -112,15 +110,15 @@ class hacerRank():
     # Triple sum
     # Given 3 arrays a,b,c of different sizes, find the number of distinct triplets (p,q,r) where p is an element of a and p<=q ,q>=r.
     # Example: a = [3,5,7]; b = [3,6]; c = [4,6,9] output: 4 (4 different triplets)
-    @staticmethod
+    
     def threeSum(self,a,b,c):
-        return list(set([(i,j,k) for i in self.a for j in self.b for k in self.c if i<=j and j>=k]))
+        return list(set([(i,j,k) for i in a for j in b for k in c if i<=j and j>=k]))
     # print(f'Distinct triplets is: {threeSum([3,5,7],[3,6],[4,6,9])} and its length is {len(threeSum([3,5,7],[3,6],[4,6,9]))}')
 
     # Merge the Tools!
-    @staticmethod
+    
     def mergeTools(self,string,k):
-        out = [''.join(list(set(i))) for i in wp.wrap(self.string,self.k)]
+        out = [''.join(list(set(i))) for i in wp.wrap(string,k)]
         print("\n".join(out))
     # mergeTools("ABBABSCD",4)
 
@@ -129,7 +127,7 @@ class hacerRank():
     # Letters cannot be rearranged. Given two strings of equal length, what's the longest string that can be constructed such that it is a child of both?
     # Example: s1 --> "ABCD" s2 --> "ABDC" otuput: 3 (Returns the length of the common child present in both strings)
     # Yet to see this
-    @staticmethod
+    
     def commonChild(self,s1, s2):
         # Function to fetch all the substring
         def Sub_Sequences(string):
@@ -138,8 +136,8 @@ class hacerRank():
                 combs.append(list(itertools.combinations(string, l)))
             ts = [''.join(t) for c in combs for t in c]
             return ts
-        s1List = Sub_Sequences(self.s1)
-        s2List = Sub_Sequences(self.s2)
+        s1List = Sub_Sequences(s1)
+        s2List = Sub_Sequences(s2)
         counter = [len(i) for i in s1List for j in s2List  if i == j]
         return max(counter)
     # print(f'Maximum length of common child is: {commonChild("ABCD","ABDC")}')
@@ -150,16 +148,16 @@ class hacerRank():
     # Given a full name, your task is to capitalize the name appropriately.
 
     # Method 1 using lambda function
-    @staticmethod
+    
     def solve1(self,s):
         dum = lambda name: name.title()   
-        return dum(self.s) 
+        return dum(s) 
     # print(f'{solve1("aneruth mohanasundaram")}')
 
     # Method 2 using for loop
-    @staticmethod
+    
     def solve2(self,s):
-        return ' '.join([i.title() for i in self.s.split(' ')])
+        return ' '.join([i.title() for i in s.split(' ')])
     # print(f'{solve2("aneruth mohanasundaram")}')    
 
     # Time Delta
@@ -171,7 +169,7 @@ class hacerRank():
     # Day dd Mon yyyy hh:mm:ss +xxxx
     # Here +xxxx represents the time zone. Your task is to print the absolute difference (in seconds) between them.
     # See this later
-    @staticmethod
+    
     def timeDelta(self,s1,s2):
         return
 
@@ -179,9 +177,9 @@ class hacerRank():
     # Sherlock considers a string to be valid if all characters of the string appear the same number of times. It is also valid if he can remove just  1 character at 1 index in the string, and the remaining characters will occur the same number of times. Given a string s, determine if it is valid. If so, return YES, otherwise return NO.
     # Example
     # s = abc | This is a valid string because frequencies are {a:1,b:1,c:1}
-    @staticmethod
+    
     def isvalid(self,s):
-        hash_map = Counter(self.s)
+        hash_map = Counter(s)
         freq_map = Counter(hash_map.values())
         if len(freq_map) == 1: return 'YES'
         if len(freq_map) >= 2: return 'NO'
@@ -206,10 +204,10 @@ class hacerRank():
     # int b[3]: Bob's challenge rating
     # Return
     # int[2]: Alice's score is in the first position, and Bob's score is in the second.
-    @staticmethod
+    
     def compareArr(self,alist,blist):
         dic = {"Alice":0,"Bob":0}    
-        for i,j in zip(self.alist,self.blist):
+        for i,j in zip(alist,blist):
             if i>j:
                 dic['Alice'] += 1
             elif i < j:
@@ -225,11 +223,11 @@ class hacerRank():
     # The left-to-right diagonal = 1 + 5 + 9 = 15.  
     # The right to left diagonal = 3 + 5 + 9 = 17. 
     # Their absolute difference is |15 -17| = 2.
-    @staticmethod
+    
     def diagonalDifference(self,arr):
-        row = len(self.arr[0])
-        sum_diag1 = sum([self.arr[i][i] for i in range(row)])
-        sum_diag2 = sum([self.arr[row-1-i][i] for i in range(row-1,-1,-1)])
+        row = len(arr[0])
+        sum_diag1 = sum([arr[i][i] for i in range(row)])
+        sum_diag2 = sum([arr[row-1-i][i] for i in range(row-1,-1,-1)])
         return abs(sum_diag1 - sum_diag2)
 
     # Plus Minus
@@ -237,9 +235,9 @@ class hacerRank():
     # Note: This challenge introduces precision problems. The test cases are scaled to six decimal places, though answers with absolute error of up to 10^-4 are acceptable.
     # Example: 
     # arr = [1,1,0,-1,-1] | output = [0.400000,0.400000,0.200000]
-    @staticmethod
+    
     def plusMinus(self,alist):
-        val = Counter(self.alist).values()
+        val = Counter(alist).values()
         res = [i/sum(val) for i in val]
         return res
     # print(f'Final value is {plusMinus([1,1,0,-1,-1])}')
@@ -252,16 +250,16 @@ class hacerRank():
     # The minimum sum is 1 + 3 + 5 + 7 = 16 and 3 + 5 + 7 + 9 = 24
 
     # Method 1
-    @staticmethod
+    
     def miniMax1(self,ar):
-        out = [sum(j) for i in range(1,len(self.ar)) for j in combinations(self.ar,i) if len(j) == len(self.ar)-1]
+        out = [sum(j) for i in range(1,len(ar)) for j in combinations(ar,i) if len(j) == len(ar)-1]
         return out
     # print(f'Output from method 1 is: {miniMax1([1,3,5,9])}')
 
     # Method 2
-    @staticmethod
+    
     def miniMax2(self,ar):
-        resultList = [[self.ar[i],self.ar[i+1],self.ar[j],self.ar[j+1]] for i in range(len(self.ar)-1) for j in range(i,len(self.ar)-1)]
+        resultList = [[ar[i],ar[i+1],ar[j],ar[j+1]] for i in range(len(ar)-1) for j in range(i,len(ar)-1)]
         output = [i for i in resultList if len(list(set(i))) != 2 and len(list(set(i))) != 3]
         return [max(output),min(output)]
     # print(f'Output from method 2 is: {miniMax2([1,3,5,9])}')
@@ -279,11 +277,11 @@ class hacerRank():
     # Sample Output: 
     # 4
     # Method 1
-    @staticmethod
+    
     def wordsScore1(self,words):
         vowels = ['a', 'e', 'i', 'o', 'u', 'y']
         score = 0
-        wordsList = self.words.split(' ')
+        wordsList = words.split(' ')
         for word in wordsList:
             hash_map = Counter(word)
         out = [hash_map[i] for i in vowels if i in hash_map.keys()]
@@ -293,10 +291,10 @@ class hacerRank():
     # print(f'Method 1 output is: {wordsScore1("hacker book")}')
 
     # Method 2
-    @staticmethod
+    
     def wordsScore2(self,words):
         score = 0
-        for word in self.words:
+        for word in words:
             score+= len(re.findall("[aeiouy]",word))%2 or 2          
         return score
     # print(f'Method 2 output is: {wordsScore2(["hacker","book"])}')
@@ -324,7 +322,7 @@ class hacerRank():
     # 5122-2368-7954 - 3214   #Separators other than '-' are used → Invalid
     # 44244x4424442444        #Contains non digit characters → Invalid
     # 0525362587961578        #Doesn't start with 4, 5 or 6 → Invalid
-    @staticmethod
+    
     def validCard(self,card):
         return
     # print(validCard("42536258796157867"))
@@ -336,9 +334,9 @@ class hacerRank():
     # Sam is a professor at the university and likes to round each student's grade according to these rules:
     # If the difference between the grade and the next multiple of 5 is less than 3, round grade up to the next multiple of 5.
     # If the value of grade is less than 38, no rounding occurs as the result will still be a failing grade.
-    @staticmethod
+    
     def studentGrade(self,alist):
-        return [i+(5-(i%5)) if(i>37 and i%5 != 0 and i%5>=3) else i for i in self.alist]
+        return [i+(5-(i%5)) if(i>37 and i%5 != 0 and i%5>=3) else i for i in alist]
     # print(f'Method 1 output is: {studentGrade([73,67,38,33])}')
 
     # Encryption
@@ -348,9 +346,9 @@ class hacerRank():
     # [Check the ipynb for following constraints]
 
     # Method 1 using numpy package
-    @staticmethod
+    
     def encrypt(self,string):
-        sqaureRootL = str((len(self.string))**0.5) 
+        sqaureRootL = str((len(string))**0.5) 
         row,col = list(map(int,sqaureRootL[:3].split('.')))[0],list(map(int,sqaureRootL[:3].split('.')))[1]
         stringList = [i for i in string]
         wordMatrix = np.matrix(stringList).reshape((row,col))
@@ -368,28 +366,25 @@ class hacerRank():
 
 
 if __name__ == '__main__':
-    # Calling our class
-    hr = hacerRank()
-
     # Accessing our sub classes from our base class
-
+    hr = hacerRank()
     ###### Sales by match ######
-    # print(f'Total count of pair is: {hr.salesMatch([1,2,1,2,1,3,2])}')
+    print(f'Total count of pair is: {hr.salesMatch([1,2,1,2,1,3,2])}')
 
     ###### Left Rotation ######
     print(f'\nLeft rotation array is {hr.leftRotation([1,2,3,4,5],3)}')
 
-    ###### Minimum Swaps 2 ######
+    # ###### Minimum Swaps 2 ######
     # Yet to see this logic
     print(f'\nMinimum swaps required is: {hr.minSwaps([7,1,3,2,4,5,6])}')
 
-    ###### Ransom Note ######
-    print('\n Method 1 Ransom Note')
+    # ###### Ransom Note ######
+    print('\nMethod 1 Ransom Note')
     print(f'Can we replicate the Magazine: {hr.ransome1("two times three is not four","two times two is four")}')
     print('\n')
     print('Method 2 Ransom Note')
-    print(f'\nCan we replicate the Magazine: {hr.ransome2("two times three is not four","two times two is four")}')
-    ###### Sales by match ######
+    print(f'Can we replicate the Magazine: {hr.ransome2("two times three is not four","two times two is four")}')
+    # ###### Sales by match ######
 
 
-    ###### Sales by match ######
+    # ###### Sales by match ######
