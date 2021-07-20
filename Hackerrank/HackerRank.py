@@ -364,6 +364,29 @@ class hacerRank():
     # Input: w = abcd | otuput: abdc
 
 
+    # Non-Divisible Subset
+    # Given a set of distinct integers, print the size of a maximal subset of S where the sum of any 2 numbers in Sdash is not evenly divisible by k. 
+    # Example: S = [19,10,12,10,24,25,22] , k = 4 
+    # Output: 3 (returns max element in a list which is not divisble by k).
+
+    def nonDivisibleSubset(self,k, s):
+        count = [0] * k
+        for i in s:
+            remainder = i % k
+            count[remainder] +=1
+        ans = min( count[0] , 1)          
+        
+        if k % 2 == 0:                    
+            ans += min(count[k//2] ,1 )
+        
+        for i in range( 1 , k//2 + 1):    
+            if i != k - i:           
+                ans += max(count[i] , count[k-i])
+        
+        return ans
+
+
+
 
 if __name__ == '__main__':
     # Accessing our sub classes from our base class
@@ -384,6 +407,7 @@ if __name__ == '__main__':
     print('\n')
     print('Method 2 Ransom Note')
     print(f'Can we replicate the Magazine: {hr.ransome2("two times three is not four","two times two is four")}')
+    
     # ###### Sales by match ######
 
 
