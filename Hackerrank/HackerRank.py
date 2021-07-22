@@ -382,8 +382,28 @@ class hacerRank():
         for i in range( 1 , k//2 + 1):    
             if i != k - i:           
                 ans += max(count[i] , count[k-i])
-        
         return ans
+    
+    # Sparse Arrays
+    # There is a collection of input strings and a collection of query strings. For each query string, determine how many times it occurs in the list of input strings. Return an array of the results.
+    # strings = ['abc','def','ab'] | queries = ['abc','ab','wer']
+    # Method 1 (Okish Ans)
+    def matchingStrings(self,strings, queries):
+        # Write your code here
+        counter = dict.fromkeys(queries,0)
+        for i in queries:
+            if i in strings:
+                counter[i] = strings.count(i)
+            else:
+                counter[i] = 0
+        return  list(counter.values())
+    # print(f"Method 1 output is: {matchingStrings(['aba','baba','aba','xzxb'],['aba','xzxb','ab'])}")
+
+    # Method 2 (Best Ans)
+    def matchingStrings2(self,strings, queries):
+        return [strings.count(i) for i in queries]
+    # print(f"Method 2 output is: {matchingStrings2(['aba','baba','aba','xzxb'],['aba','xzxb','ab'])}")    
+
 
 
 
