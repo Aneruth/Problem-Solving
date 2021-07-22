@@ -242,15 +242,24 @@
 #         return ans
 # print(busyStudent2(startTime,endTime,5))
 
-temperatures = [73,74,75,71,69,72,76,73]
-def dailyTemperatures(T):
-    ans = [0] * len(T)
-    stack = []
-    for i in range(len(T)):
-        # maintain a monotonically decreasing stack with indices
-        while stack and T[stack[-1]] < T[i]: 
-            index = stack.pop()
-            ans[index] = i - index
-        stack.append(i)
-    return ans
-print(dailyTemperatures(temperatures))
+# temperatures = [73,74,75,71,69,72,76,73]
+# def dailyTemperatures(T):
+#     ans = [0] * len(T)
+#     stack = []
+#     for i in range(len(T)):
+#         # maintain a monotonically decreasing stack with indices
+#         while stack and T[stack[-1]] < T[i]: 
+#             index = stack.pop()
+#             ans[index] = i - index
+#         stack.append(i)
+#     return ans
+# print(dailyTemperatures(temperatures))
+
+
+def minDeletionSize(strs):
+    result = 0
+    for i in range(len(strs[0])):
+        temp = [x[i] for x in strs]
+        result += 0 if temp == sorted(temp) else 1
+    return result
+print(minDeletionSize(["cba","daf","ghi"]))
