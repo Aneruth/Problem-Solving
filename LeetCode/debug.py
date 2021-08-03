@@ -288,7 +288,15 @@
 # Input: nums = [1], target = 0
 # Output: -1
 
-def search(alist,target):
-    if target in alist: return alist.index(target)
-    return -1
-print(f'Method 1 output is: {search([4,5,6,7,0,1,2],2)}')
+# def search(alist,target):
+#     if target in alist: return alist.index(target)
+#     return -1
+# print(f'Method 1 output is: {search([4,5,6,7,0,1,2],2)}')
+
+# num = '52'
+# oddNums = ['1','3','5','7','9']
+# for i in range(len(num)-1,-1,-1):
+#     if(num[i] in oddNums):
+#         print(num[:i+1])
+#     else:
+#         print("")
