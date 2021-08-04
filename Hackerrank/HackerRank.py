@@ -44,14 +44,15 @@ class hacerRank():
     # using bubble sort we can count the number of swaps required
     # Partial output solves 3/15 test cases 
     
-    def minSwaps(self,alist):
-        counter = 0
-        for j in range(len(alist)):
-            for i in range(len(alist)-1):
-                if alist[i] > alist[i+1]:
-                    alist[i],alist[i+1]  = alist[i+1],alist[i]
-                    counter += 1
-        return alist,counter
+    def minimumSwaps(arr):
+        count = 0
+        for i in range(0,len(arr)-1):
+            while arr[i] != i+1:
+                t = arr[arr[i] - 1]
+                arr[arr[i] - 1] = arr[i]
+                arr[i] = t
+                count += 1
+        return count
     # print(minSwaps([7,1,3,2,4,5,6]))
 
     # Hash Tables: Ransom Note
