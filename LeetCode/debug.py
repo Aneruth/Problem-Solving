@@ -300,3 +300,13 @@
 #         print(num[:i+1])
 #     else:
 #         print("")
+
+def largeNum(nums):
+    out = list(map(lambda x: x*2,nums))
+    maxEle = out[len(out)//2]
+    for i in out:
+        if maxEle < i:
+            maxEle = i
+            return nums.index(maxEle/2)
+    return -1
+print(largeNum([1,2,3,2]))
