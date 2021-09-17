@@ -301,12 +301,25 @@
 #     else:
 #         print("")
 
-def largeNum(nums):
-    out = list(map(lambda x: x*2,nums))
-    maxEle = out[len(out)//2]
-    for i in out:
-        if maxEle < i:
-            maxEle = i
-            return nums.index(maxEle/2)
-    return -1
-print(largeNum([1,2,3,2]))
+# def largeNum(nums):
+#     out = list(map(lambda x: x*2,nums))
+#     maxEle = out[len(out)//2]
+#     for i in out:
+#         if maxEle < i:
+#             maxEle = i
+#             return nums.index(maxEle/2)
+#     return -1
+# print(largeNum([1,2,3,2]))
+
+# s = 'a1b2'
+# result = [[]]
+# for i in s:
+#     if i.isalpha():
+#         for j in range(len(result)):
+#             result.append(result[j][:])
+#             result[j].append(i.lower())
+#             result[-1].append(i.upper())
+#     else:
+#         for d in result:
+#             d.append(i)
+# print(list(map("".join,result)))
