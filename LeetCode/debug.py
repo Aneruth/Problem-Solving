@@ -323,3 +323,14 @@
 #         for d in result:
 #             d.append(i)
 # print(list(map("".join,result)))
+
+a = [1,3,1,5,4];k = 0
+def findPairs(nums, k):
+    counter = 0
+    nums.sort()
+    for i in range(len(nums)):
+        for j in range(len(nums)):
+            if nums[i] != nums[j] and abs(nums[i]  - nums[j])  == k:
+                counter += 1
+    return counter
+print(findPairs(a,k))
